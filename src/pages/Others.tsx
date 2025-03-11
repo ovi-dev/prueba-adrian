@@ -40,7 +40,9 @@ const Others = () => {
         {/* Información del personaje */}
         <div className="flex flex-col flex-1">
           <h1 className="text-3xl font-bold mb-2">{character.name}</h1>
-          <p className="mb-4">{character.description || "Sin descripción disponible."}</p>
+          <p className="mb-4">
+            {character.description || "Sin descripción disponible."}
+          </p>
         </div>
       </div>
       {/* Sección de cómics */}
