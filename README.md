@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# Marvel Characters App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido a **Marvel Characters App**, una aplicación que te permite explorar información sobre personajes de Marvel, ver sus cómics y gestionar tus favoritos.
 
-Currently, two official plugins are available:
+## 🚀 Características
+- Listado de 50 personajes de Marvel con imágenes y nombres.
+- Buscador para encontrar personajes específicos.
+- Sección de favoritos para guardar y visualizar tus personajes preferidos.
+- Vista detallada con información adicional y cómics en los que aparecen los personajes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tecnologías utilizadas
+- **React 19**
+- **Vite**
+- **TypeScript**
+- **Tailwind CSS**
+- **Zustand** (para la gestión del estado de favoritos)
+- **React Router** (para la navegación)
+- **Marvel API** (para obtener la información de los personajes y cómics)
 
-## Expanding the ESLint configuration
+## 📦 Instalación y ejecución
+Sigue estos pasos para levantar el proyecto en tu máquina local.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+### 1️⃣ Clonar el repositorio
+```sh
+git clone git@github.com:ovi-dev/prueba-adrian.git
+cd prueba-adrian
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+### 2️⃣ Instalar dependencias
+```sh
+yarn install
+# o
+npm install
 ```
+
+### 3️⃣ Configurar variables de entorno
+Crea un archivo `.env` en la raíz del proyecto y agrega las siguientes variables:
+```sh
+VITE_MARVEL_PUBLIC_KEY=tu_public_key
+VITE_MARVEL_PRIVATE_KEY=tu_private_key
+```
+> **Nota:** Necesitas una cuenta en [Marvel Developer](https://developer.marvel.com/) para obtener las claves de la API.
+
+### 4️⃣ Ejecutar el proyecto en modo desarrollo
+```sh
+yarn dev
+# o
+npm run dev
+```
+El proyecto estará disponible en [http://localhost:5173](http://localhost:5173)
+
+## 🌐 Despliegue en producción
+La aplicación está desplegada en Vercel y puedes verla en:
+🔗 [Marvel Characters App](https://prueba-adrian-rldyvb9op-adrians-projects-b58ce157.vercel.app/)
+
+## 📧 Contacto
+Si tienes alguna pregunta o sugerencia, puedes contactarme en **adrian311@gmail.com**.
+
+---
+🦸‍♂️ ¡Disfruta explorando el universo Marvel! 🚀
