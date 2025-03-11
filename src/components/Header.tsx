@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const Header = () => {
-  const [favoritesCount, setFavoritesCount] = useState(0);
-
-  useEffect(() => {
-    // Obtener favoritos desde localStorage
-    const updateFavoritesCount = () => {
-      const storedFavorites = localStorage.getItem("favorites");
-      setFavoritesCount(storedFavorites ? JSON.parse(storedFavorites).length : 0);
-    };
-
-    updateFavoritesCount(); // Ejecutar al montar
-
-    // Escuchar cambios en localStorage
-    window.addEventListener("storage", updateFavoritesCount);
-
-    return () => {
-      window.removeEventListener("storage", updateFavoritesCount);
-    };
-  }, []);
+  const { favorites } = useFavoritesStore();
 
   return (
     <header className="flex justify-between items-center bg-black p-4">
@@ -35,7 +17,7 @@ const Header = () => {
       <Link to="/favorites" className="flex items-center text-white relative">
         <span className="text-red-500 text-2xl mr-1">❤️</span>
         <span className="bg-red-500 text-white rounded-full px-2 py-1 text-sm">
-          {favoritesCount}
+          {favorites.length}
         </span>
       </Link>
     </header>

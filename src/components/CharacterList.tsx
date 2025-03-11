@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCharacters } from "../api/marvel";
 import { Busqueda } from "./Busqueda";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 interface Character {
   id: number;
@@ -8,41 +9,38 @@ interface Character {
   thumbnail: { path: string; extension: string };
 }
 
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 horas
+
 const CharacterList = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [favorites, setFavorites] = useState<Character[]>([]);
+  const { favorites, toggleFavorite } = useFavoritesStore();
 
   useEffect(() => {
     const fetchData = async () => {
+      const cachedData = localStorage.getItem("characters");
+      const cacheTimestamp = localStorage.getItem("characters_timestamp");
+
+      if (cachedData && cacheTimestamp) {
+        const timeElapsed = Date.now() - parseInt(cacheTimestamp, 10);
+        if (timeElapsed < CACHE_DURATION) {
+          setCharacters(JSON.parse(cachedData));
+          return;
+        }
+      }
+
+      // Si no hay caché válido, obtener nuevos datos
       const data = await getCharacters();
       setCharacters(data);
+
+      // Guardar en localStorage
+      localStorage.setItem("characters", JSON.stringify(data));
+      localStorage.setItem("characters_timestamp", Date.now().toString());
     };
+
     fetchData();
-    
-    // Cargar favoritos desde localStorage
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
   }, []);
 
-  // Función para alternar favoritos
-  const toggleFavorite = (character: Character) => {
-    const isFav = favorites.some((fav) => fav.id === character.id);
-    let updatedFavorites;
-
-    if (isFav) {
-      updatedFavorites = favorites.filter((fav) => fav.id !== character.id);
-    } else {
-      updatedFavorites = [...favorites, character];
-    }
-
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
-
-  // Filtrar personajes según búsqueda
   const filteredCharacters = characters.filter((char) =>
     char.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -57,6 +55,7 @@ const CharacterList = () => {
               src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
               alt={char.name}
               className="w-full h-40 object-cover rounded-md"
+              loading="lazy" // Para cargar solo cuando sea necesario
             />
             <h3 className="text-center font-bold mt-2">{char.name}</h3>
             <button

@@ -1,5 +1,3 @@
-
-
 const Others = () => {
   return (
     <div>

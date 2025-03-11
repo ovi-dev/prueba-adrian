@@ -2,11 +2,10 @@
 
 import CharacterList from "../components/CharacterList";
 
-
 const Home = () => {
   return (
     <div>
-      <CharacterList/>
+      <CharacterList />
       <h1>Home Page</h1>
     </div>
   );

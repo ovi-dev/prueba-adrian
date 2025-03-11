@@ -1,28 +1,7 @@
-
-import { useEffect, useState } from "react";
-
-interface Character {
-  id: number;
-  name: string;
-  thumbnail: { path: string; extension: string };
-}
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState<Character[]>([]);
-
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  // Función para eliminar de favoritos
-  const removeFavorite = (id: number) => {
-    const updatedFavorites = favorites.filter((fav) => fav.id !== id);
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
+  const { favorites, toggleFavorite } = useFavoritesStore();
 
   return (
     <div className="container mx-auto p-4">
@@ -40,7 +19,7 @@ const Favorites = () => {
               />
               <h3 className="text-center font-bold mt-2">{char.name}</h3>
               <button
-                onClick={() => removeFavorite(char.id)}
+                onClick={() => toggleFavorite(char)}
                 className="mt-2 px-4 py-1 bg-red-500 text-white rounded"
               >
                 <span className="text-black">X</span> Eliminar
