@@ -29,14 +29,15 @@ export const getCharacters = async () => {
   }
 };
 
-// Obtener detalles de un personaje por ID
-export const getCharacterById = async (characterId: number) => {
+// 🔹 Nueva función corregida para obtener detalles de un personaje por ID
+export const getCharacterById = async (id: string) => {
   try {
     const authParams = getAuthParams();
-    const response = await axios.get(`${BASE_URL}/characters/${characterId}`, {
+    const response = await axios.get(`${BASE_URL}/characters/${id}`, {
       params: authParams,
     });
-    return response.data.data.results[0];
+
+    return response.data.data.results[0]; // Retorna el primer resultado
   } catch (error) {
     console.error("Error obteniendo personaje:", error);
     return null;

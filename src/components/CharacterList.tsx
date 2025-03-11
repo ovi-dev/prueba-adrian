@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "../api/marvel";
 import { Busqueda } from "./Busqueda";
 import { useFavoritesStore } from "../store/useFavoritesStore";
+import { Link } from "react-router-dom";
 
 interface Character {
   id: number;
@@ -49,26 +50,31 @@ const CharacterList = () => {
     <div className="container mx-auto p-4">
       <Busqueda setSearchTerm={setSearchTerm} />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
         {filteredCharacters.map((char) => (
+
           <div key={char.id} className="border p-2 rounded-lg shadow-md">
-            <img
-              src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
-              alt={char.name}
-              className="w-full h-40 object-cover rounded-md"
-              loading="lazy" // Para cargar solo cuando sea necesario
-            />
-            <h3 className="text-center font-bold mt-2">{char.name}</h3>
-            <button
-              onClick={() => toggleFavorite(char)}
-              className={`mt-2 px-4 py-1 rounded ${
-                favorites.some((fav) => fav.id === char.id)
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-300 text-black"
-              }`}
-            >
-              {favorites.some((fav) => fav.id === char.id) ? "❤️ Quitar" : "🤍 Favorito"}
-            </button>
-          </div>
+    <Link to={`/others/${char.id}`}> {/* ✅ Enlace a la página de detalles */}
+      <img
+        src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
+        alt={char.name}
+        className="w-full h-40 object-cover rounded-md"
+        loading="lazy"
+      />
+      <h3 className="text-center font-bold mt-2">{char.name}</h3>
+    </Link>
+    <button
+      onClick={() => toggleFavorite(char)}
+      className={`mt-2 px-4 py-1 rounded ${
+        favorites.some((fav) => fav.id === char.id)
+          ? "bg-red-500 text-white"
+          : "bg-gray-300 text-black"
+      }`}
+    >
+      {favorites.some((fav) => fav.id === char.id) ? "❤️ Quitar" : "🤍 Favorito"}
+    </button>
+  </div>
+
         ))}
       </div>
     </div>
