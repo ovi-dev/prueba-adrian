@@ -62,7 +62,7 @@ El proyecto estará disponible en [http://localhost:5173](http://localhost:5173)
 ## 🌐 Despliegue en producción
 
 La aplicación está desplegada en Vercel y puedes verla en:
-🔗 [Marvel Characters App](https://prueba-adrian-rldyvb9op-adrians-projects-b58ce157.vercel.app/)
+🔗 [Marvel Characters App / Mi prueba](https://prueba-adrian.vercel.app/)
 
 ## 📧 Contacto
 
