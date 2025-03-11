@@ -11,6 +11,7 @@ function App() {
     <Router>
       <Layout>  {/* Aquí envuelves las rutas con el Layout */}
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/others" element={<Others />} />
