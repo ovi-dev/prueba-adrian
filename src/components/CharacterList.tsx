@@ -29,7 +29,7 @@ const CharacterList = () => {
           return;
         }
       }
-
+        
       // Si no hay caché válido, obtener nuevos datos
       const data = await getCharacters();
       setCharacters(data);
