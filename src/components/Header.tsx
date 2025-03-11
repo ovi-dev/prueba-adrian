@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useFavoritesStore } from "../store/useFavoritesStore";
+import MarvelLogo from "../assets/Marvel_Logo.svg";
 
 const Header = () => {
   const { favorites } = useFavoritesStore();
@@ -8,7 +9,7 @@ const Header = () => {
     <header className="flex justify-between items-center bg-black p-4">
       <Link to="/" className="text-white text-2xl font-bold flex items-center">
         <img
-          src="src/assets/Marvel_Logo.svg"
+          src={MarvelLogo}
           alt="Logo"
           className="w-32 h-auto mr-4"
         />
