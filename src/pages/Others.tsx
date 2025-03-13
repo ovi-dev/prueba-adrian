@@ -9,6 +9,7 @@ import {
 } from "react";
 import { useParams } from "react-router-dom";
 import { getCharacterById } from "../api/marvel";
+import { Busqueda } from "../components/Busqueda";
 
 interface Character {
   comicsList: any;
@@ -34,6 +35,7 @@ const Others = () => {
   }, [id]);
 
   if (!character) return <p>Cargando...</p>;
+
 
   return (
 <>

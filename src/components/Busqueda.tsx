@@ -17,7 +17,7 @@ export const Busqueda = ({ setSearchTerm }: BusquedaProps) => {
       onChange={handleInputChange} // cuando se comienza a escribir
       />
       <svg
-      className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
+      className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400"
       width="20"
       height="20"
       fill="currentColor"
