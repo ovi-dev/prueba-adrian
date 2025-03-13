@@ -58,14 +58,14 @@ const CharacterList = () => {
         {filteredCharacters.map((char) => (
           <div key={char.id} className=" overflow-hidden">
             <Link to={`/others/${char.id}`}>
-              <div className="h-56 w-full overflow-hidden">
+                <div className="h-64 w-full overflow-hidden">
                 <img
                   src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
                   alt={char.name}
-                  className="w-full h-56 object-cover"
+                  className="w-full h-64 object-cover"
                   loading="lazy"
                 />
-              </div>
+                </div>
             </Link>
             
             <div className="bg-black text-white p-4 h-16 flex items-center relative group">

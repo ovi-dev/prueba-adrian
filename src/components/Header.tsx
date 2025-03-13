@@ -6,7 +6,7 @@ const Header = () => {
   const { favorites } = useFavoritesStore();
 
   return (
-    <header className="flex justify-between items-center bg-black p-4">
+    <header className="flex justify-between items-center bg-black p-4 h-25">
       <Link to="/" className="text-white text-2xl font-bold flex items-center">
         <img
           src={MarvelLogo}
