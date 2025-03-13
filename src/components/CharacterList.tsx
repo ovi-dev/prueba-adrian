@@ -68,7 +68,7 @@ const CharacterList = () => {
                 </div>
             </Link>
             
-            <div className="bg-black text-white p-4 h-16 flex items-center relative group">
+            <div className="bg-black text-white p-6 h-22 flex items-center relative group ">
 
             <div className="absolute top-0 left-0 w-full h-1 bg-red-500 group-hover:h-full transition-all duration-300 ease-in-out"></div>
                 <div className="flex justify-between items-center w-full relative z-10">
