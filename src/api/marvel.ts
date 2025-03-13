@@ -22,15 +22,16 @@ export const getCharacters = async () => {
         limit: 50,
       },
     });
+     return response.data.data.results;
 
-    return response.data.data.results;
   } catch (error) {
     console.error("Error obteniendo personajes:", error);
     return [];
   }
 };
 
-// 🔹 Nueva función corregida para obtener detalles de un personaje por ID
+
+// corregida para obtener detalles de un personaje por ID
 export const getCharacterById = async (id: string) => {
   try {
     const authParams = getAuthParams();

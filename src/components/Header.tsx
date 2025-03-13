@@ -17,7 +17,7 @@ const Header = () => {
 
       <Link to="/favorites" className="flex items-center text-white relative">
         <span className="text-red-500 text-2xl mr-1">❤️</span>
-        <span className="bg-red-500 text-white rounded-full px-2 py-1 text-sm">
+        <span className=" text-white  px-2 py-1 text-sm">
           {favorites.length}
         </span>
       </Link>

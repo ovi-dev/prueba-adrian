@@ -8,11 +8,11 @@ const Favorites = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">❤️ Favoritos</h1>
       {favorites.length === 0 ? (
-        <p>No tienes personajes favoritos.</p>
+        <p className=" uppercase">No tienes personajes favoritos.</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {favorites.map((char) => (
-            <div key={char.id} className="border p-2 rounded-lg shadow-md">
+            <div key={char.id} className="border p-4 rounded-lg shadow-md">
               <Link to={`/others/${char.id}`}>
                 <img
                   src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
