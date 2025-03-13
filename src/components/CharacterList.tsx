@@ -3,6 +3,8 @@ import { getCharacters } from "../api/marvel";
 import { Busqueda } from "./Busqueda";
 import { useFavoritesStore } from "../store/useFavoritesStore";
 import { Link } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 
 interface Character {
   id: number;
@@ -47,36 +49,49 @@ const CharacterList = () => {
   );
 
   return (
+    <>
     <div className="container mx-auto p-4">
       <Busqueda setSearchTerm={setSearchTerm} />
+
+      <h2 className="mb-6">{filteredCharacters.length} RESULTS</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {filteredCharacters.map((char) => (
-          <div key={char.id} className="border p-2 rounded-lg shadow-md">
+          <div key={char.id} className=" overflow-hidden">
             <Link to={`/others/${char.id}`}>
-              <img
-                src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
-                alt={char.name}
-                className="w-full h-56 object-cover rounded-md"
-                loading="lazy"
-              />
-              <h3 className="text-center font-bold mt-2">{char.name}</h3>
+              <div className="h-56 w-full overflow-hidden">
+                <img
+                  src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
+                  alt={char.name}
+                  className="w-full h-56 object-cover"
+                  loading="lazy"
+                />
+              </div>
             </Link>
-            <button
-              onClick={() => toggleFavorite(char)}
-              className={`mt-2 px-4 py-2 rounded w-full transition-colors cursor-pointer ${
-                favorites.some((fav) => fav.id === char.id)
-                  ? "bg-red-500 hover:bg-red-600 text-white"
-                  : "bg-black hover:bg-gray-800 text-white"
-              }`}
-            >
-              {favorites.some((fav) => fav.id === char.id)
-                ? "❤️ Quitar"
-                : "🤍 Favorito"}
-            </button>
+            
+            <div className="bg-black text-white p-4 h-16 flex items-center relative group">
+
+            <div className="absolute top-0 left-0 w-full h-1 bg-red-500 group-hover:h-full transition-all duration-300 ease-in-out"></div>
+                <div className="flex justify-between items-center w-full relative z-10">
+                  <h3 className="font-bold text-sm truncate flex-1 mr-2">{char.name}</h3>
+                
+                <button
+                  onClick={() => toggleFavorite(char)}
+                  className="text-xl focus:outline-none flex-shrink-0"
+                  aria-label={favorites.some((fav) => fav.id === char.id) ? "Quitar de favoritos" : "Añadir a favoritos"}
+                >
+                  {favorites.some((fav) => fav.id === char.id) ? (
+                    <FaHeart className="text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out" />
+                  ) : (
+                    <FaRegHeart className="text-white hover:text-gray-300" />
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
+    </>
   );
 };
 

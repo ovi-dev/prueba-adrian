@@ -36,77 +36,85 @@ const Others = () => {
   if (!character) return <p>Cargando...</p>;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white text-black p-4">
-      <div className="container max-w-4xl flex flex-col md:flex-row gap-6 items-start bg-white p-6 rounded-lg shadow-lg">
-        {/* Imagen del personaje */}
-        <div className="shrink-0">
-          <img
-            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-            alt={character.name}
-            className="w-64 h-64 object-cover rounded-md"
-          />
-        </div>
-        {/* Información del personaje */}
-        <div className="flex flex-col flex-1">
-          <h1 className="text-3xl font-bold mb-2">{character.name}</h1>
-          <p className="mb-4">
-            {character.description || "Sin descripción disponible."}
-          </p>
-        </div>
-      </div>
+<>
 
+   
+<div className="w-screen  flex items-center justify-center bg-black text-white p-6">
+  <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center">
+    {/* Imagen del personaje */}
+    <div className="w-64 h-64 flex justify-center items-center">
+      <img
+        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+        alt={character.name}
+        className="w-full h-full object-cover rounded-md"
+      />
+    </div>
+
+    {/* Información del personaje */}
+    <div className="flex flex-col items-center md:items-start text-center md:text-left md:ml-6">
+      <h1 className="text-3xl font-bold mb-2">{character.name}</h1>
+      <p className="max-w-lg">{character.description || "Sin descripción disponible."}</p>
+    </div>
+  </div>
+</div>
+
+    <div className="flex flex-col items-center min-h-screen  p-4 ">
+    
       {/* Sección de cómics */}
-      <div className="container max-w-4xl bg-white p-6 mt-6 rounded-lg shadow-lg">
+      <section className="container max-w-4xl bg-white p-6 mt-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-2 uppercase">Cómics</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="flex overflow-x-auto space-x-4">
           {character.comicsList.length > 0 ? (
-            character.comicsList.map(
-              (comic: {
-                id: Key | null | undefined;
-                thumbnail: string | undefined;
-                title:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-              }) => (
-                <div
-                  key={comic.id}
-                  className="flex flex-col items-center bg-gray-200 p-3 rounded-md"
-                >
-                  <img
-                    src={comic.thumbnail}
-                    alt={String(comic.title)}
-                    className="w-32 h-40 object-cover rounded-md"
-                  />
-                  <p className="text-center text-sm mt-2">{comic.title}</p>
-                </div>
-              ),
-            )
+        character.comicsList.map(
+          (comic: {
+            id: Key | null | undefined;
+            thumbnail: string | undefined;
+            title:
+          | string
+          | number
+          | bigint
+          | boolean
+          | ReactElement<unknown, string | JSXElementConstructor<any>>
+          | Iterable<ReactNode>
+          | Promise<
+              | string
+              | number
+              | bigint
+              | boolean
+              | ReactPortal
+              | ReactElement<
+              unknown,
+              string | JSXElementConstructor<any>
+            >
+              | Iterable<ReactNode>
+              | null
+              | undefined
+            >
+          | null
+          | undefined;
+          }) => (
+            <div
+          key={comic.id}
+          className="flex flex-col items-center p-3 min-w-[12rem]"
+            >
+          <img
+            src={comic.thumbnail}
+            alt={String(comic.title)}
+            className="w-48 h-60 object-cover"
+          />
+          <p className="text-center text-sm mt-2 font-bold">
+            {comic.title}
+          </p>
+            </div>
+          )
+        )
           ) : (
-            <p className="uppercase">No hay cómics disponibles.</p>
+        <p className="uppercase">No hay cómics disponibles.</p>
           )}
         </div>
-      </div>
+      </section>
     </div>
+    </>
   );
 };
 
